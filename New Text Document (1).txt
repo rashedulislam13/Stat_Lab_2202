@@ -1,0 +1,238 @@
+#########1#######
+(i)
+data=c(2,4,6,8);data
+sample.data=rbind(c(2,4),c(2,6),c(2,8),c(4,6),c(4,8),c(6,8));sample.data
+pop.mean=mean(data);pop.mean
+yibar=rowMeans(sample.data);yibar
+E.ybar=sum(yibar*(1/6));E.ybar
+
+(ii)
+E.yibar2=sum((yibar^2)*(1/6));E.yibar2
+v.ybar=E.yibar2-(E.ybar)^2;v.ybar
+N=length(data);N
+n=2;n
+var=var(data);var
+sigma2=var*(N-1)/N;sigma2
+RHS=(sigma2/n)*((N-n)/(N-1));RHS
+
+(iii)
+s2=(sample.data[,1]-yibar)^2+(sample.data[,2]-yibar)^2;s2
+E.s2=sum(s2*(1/6));E.s2
+
+(iv)
+alpha=0.05;alpha
+ztab=qnorm(alpha/2,mean=0,sd=1);ztab
+LCL=pop.mean-abs(ztab)*sqrt(var/N);LCL
+UCL=pop.mean+abs(ztab)*sqrt(var/N);UCL
+
+total=pop.mean*N;total
+vartotal=N^2*sigma2;vartotal
+LCLt=total-abs(ztab)*sqrt(vartotal/N);LCLt
+UCLt=total+abs(ztab)*sqrt(vartotal/N);UCLt
+
+##############2#############
+(i)
+X=c(5.9,7.2,7.3,6.3,8.1,6.8,7.0,7.6,6.8,6.5,7.0,6.3,7.9,9.0,8.2,8.7,7.8,9.7,7.4,7.7,9.7,7.8,7.7,11.6,11.3,11.8,10.7);X 
+Y=c(6.1,5.8,7.8,7.1,7.2,9.2,6.6,8.3,7.0,8.3,7.8,8.1, 7.4,8.5,8.9,9.8,9.7,14.1,12.6,11.2);Y 
+Xbar=mean(X);Xbar
+Ybar=mean(Y);Ybar
+dif=abs(Xbar-Ybar);dif
+
+(ii)
+Xvar=var(X);Xvar
+Yvar=var(Y);Yvar
+n1=length(X);n1
+n2=length(Y);n2
+SE.dif=sqrt((Xvar/n1)+(Yvar/n2));SE.dif
+
+(iii)
+ratio=sqrt(Xvar)/sqrt(Yvar);ratio
+
+(iv)
+var.dif=Xvar+Yvar;var.dif
+
+###########3#########
+(i)
+x=c(16.0, 15.2, 12.0, 16.9, 14.4, 16.3, 15.6, 12.9, 15.3, 15.1, 15.8, 15.5, 12.5, 14.5, 14.9, 15.1, 16.0, 12.5, 14.3, 15.4, 15.4, 13.0, 12.6, 14.9, 15.1, 15.3, 12.4, 17.2, 14.7, 14.8);x
+n=length(x);n
+muhat=sum(x)/n;muhat
+sigmahat=sqrt((sum(x^2)-n*muhat^2)/n);sigmahat
+(ii)
+alpha=0.10;alpha
+ztab=qnorm(alpha/2,mean=0,sd=1);ztab
+LCL=muhat-abs(ztab)*sqrt(sigmahat/n);LCL
+UCL=muhat+abs(ztab)*sqrt(sigmahat/n);UCL
+
+
+########4#########
+norm=rnorm(200,50,26);norm
+exp=rexp(60);exp
+
+(i)
+n=length(norm);n
+muhat=sum(norm)/n;muhat
+sigmahat=sqrt((sum(norm^2)-n*muhat^2)/n);sigmahat
+
+thetahat=1/mean(exp);thetahat
+
+sajeeb code .........................
+
+norm = rnorm(200,50,26);norm
+exp = rexp(200,1/60);exp
+n = length(norm);n
+n1 = length(exp);n1
+muhat = sum(norm)/n;muhat 
+sigmahut = sqrt(sum((norm^2)-(muhat^2))/n);sigmahut
+lemda = 1/mean(exp);lemda
+
+
+alpha = 0.05;alpha
+ztab = qnorm(alpha/2, mean = 0, sd = 1);ztab
+LB = 50-abs(ztab)*sqrt(26/n);LB
+UB = 50+abs(ztab)*sqrt(26/n);UB
+
+ztab1 = qnorm(1-(alpha/2));ztab1
+LB1 = lemda - abs(ztab1)*(lemda/sqrt(n1));LB1
+UB1 = lemda + abs(ztab1)*(lemda/sqrt(n1));UB1 
+
+var_exp = 1/(lemda^2);var_exp
+var_exp1 = var(exp);var_exp1
+
+
+##################555#################
+
+data = c(0.46,0.38,0.61,0.82,0.59,0.53,0.72,0.44,0.58,0.60,0.73,0.55,0.23,0.62,0.38,0.27,0.36,0.47,0.49,0.71);data
+n = length(data);n
+xbar = sum(data)/n;xbar
+theta = 1/xbar;theta
+
+alpha = 0.05;alpha
+ztab1 = qnorm(1-(alpha/2));ztab1
+LB1 = theta - abs(ztab1)*(theta/sqrt(n));LB1
+UB1 = theta + abs(ztab1)*(theta/sqrt(n));UB1 
+
+var_theta = 1/theta^2;var_theta
+
+
+
+############6#########
+xbar=38100;xbar
+n=48;n
+sd=5200;sd
+mu=37000;mu
+alpha=0.05;alpha
+zstat=(xbar-mu)/(sd/sqrt(n));zstat
+ztab=qnorm(alpha,mean=0,sd=1,lower.tail=FALSE);ztab
+if(zstat>ztab){
+print("Null hypothesis is rejected")
+} else {
+print("Null hypothesis is accepted")
+}
+pval=pnorm(zstat,lower.tail=FALSE);pval
+if(pval<alpha){
+print("Null hypothesis is rejected")
+} else {
+print("Null hypothesis is accepted")
+}
+CI=xbar-ztab*sd/sqrt(n);CI
+#########7############
+temp1=c(32,34,31,33,35,36,34,34,34,35,32,33,33,33,32,32,34,33,32,34,32,31,33,34,35,34,33,33,33,34,3
+4);temp1
+temp2=c(34,34,35,35,35,35,35,35,36,37,34,33,34,35,34,34,36,34,33,34,32,33,34,36,35,35,35,34,35,34,3
+5);temp2
+data=cbind(temp1,temp2);data
+getwd()
+write.csv(data,'C:/Users/HP/Desktop/data1.csv')
+alpha=0.05;alpha
+n1=length(temp1);n1
+n2=length(temp2);n2
+xbar1=mean(temp1);xbar1
+xbar2=mean(temp2);xbar2
+sd1=sd(temp1);sd1
+sd2=sd(temp2);sd2
+zstat=(xbar1-xbar2)/sqrt(sd1^2/n1+sd2^2/n2);zstat
+ztab=qnorm(alpha/2,mean=0,sd=1);ztab
+if(abs(zstat)>abs(ztab)){
+print("Null hypothesis is rejected")
+}else{
+print=("Null hypothesis is accepted")
+}
+pval=2*pnorm(zstat);pval
+if(pval<alpha){
+print("Null hypothesis is rejected")
+}else{
+print=("Null hypothesis is accepted")
+}
+boxplot(temp1,temp2,main="Box plot",xlab="Month",ylab="Temperature")
+LCL=(xbar1-xbar2)-abs(ztab)*sqrt(sd1^2/n1+sd2^2/n2);LCL
+UCL=(xbar1-xbar2)+abs(ztab)*sqrt(sd1^2/n1+sd2^2/n2);UCL
+##########8############
+alpha=0.01;alpha
+a1=44;a1
+n1=80;n1
+a2=41;a2
+n2=90;n2
+p1=a1/n1;p1
+p2=a2/n2;p2
+P=(a1+a2)/(n1+n2);P
+Q=1-P;Q
+zstat=(p1-p2)/sqrt(P*Q*(1/n1+1/n2));zstat
+ztab=qnorm(alpha/2,mean=0,sd=1,lower.tail=FALSE);ztab
+if(zstat>ztab){
+print("Null hypothesis is rejected")
+} else {
+print("Null hypothesis is accepted")
+}
+pval=2*pnorm(zstat,lower.tail=FALSE);pval
+if(pval<alpha){
+print("Null hypothesis is rejected")
+} else {
+print("Null hypothesis is accepted")
+}
+LCL=(p1-p2)-abs(ztab)*sqrt(P*Q*(1/n1+1/n2));LCL
+UCL=(p1-p2)+abs(ztab)*sqrt(P*Q*(1/n1+1/n2));UCL
+############9#########
+data=read.csv(file.choose());data
+math=data[,3];math
+stat=data[,2];stat
+sd_math=sd(math);sd_math
+sd_stat=sd(stat);sd_stat
+alpha=0.05;alpha
+Fcal=sd_math^2/sd_stat^2;Fcal
+Ftab=qf(alpha,df1=19,df2=19,lower.tail="FALSE");Ftab
+if(Fcal>Ftab){
+print("Null hypothesis is rejected")
+} else {
+print("Null hypothesis is accepted")
+}
+pval=
+pval=1-pf(Fcal,df1=19,df2=19,lower.tail="FALSE");pval
+if(pval<alpha){
+print("Null hypothesis is rejected")
+} else {
+print("Null hypothesis is accepted")
+}
+###########10#########
+X=c(160,165,159,164,168,155,158,155,152,159,158,154,153,152,154);X
+Y=c(70,72,64,63,72,65,62,56,56,60,58,58,55,56,60);Y
+n=length(X);n
+data=cbind(X,Y);data
+m=data.frame(X,Y);m
+write.csv(data,'C:/Users/HP/Desktop/Test of hypothesis lab/data 6.csv')
+alpha=0.05;alpha
+reg=lm(m$Y~m$X,m);reg
+summary(reg)
+r=cor(X,Y);r
+tcal=r*sqrt(n-2)/(1-r^2);tcal
+ttab=qt(alpha/2,n-2);ttab
+if(abs(tcal)>abs(ttab)){
+print("Null hypothesis is rejected")
+} else {
+print("Null hypothesis is accepted")
+}
+pval=2*pt(tcal,n-2,lower.tail=FALSE);pval
+if(pval<alpha){
+print("Null hypothesis is rejected")
+} else {
+print("Null hypothesis is accepted")
+}
